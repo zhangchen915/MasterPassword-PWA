@@ -1,0 +1,12 @@
+{
+    "short_name": "Master Password",
+    "name": "Master Password — Secure your life, forget your passwords.",
+    "icons": [
+      {
+        "src": "./image/icon.png",
+        "type": "image/png",
+        "sizes": "48x48"
+      }
+    ],
+    "start_url": "index.html?launcher=true"
+  }

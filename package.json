@@ -1,0 +1,23 @@
+{
+  "name": "mp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel ./index.html --no-source-maps"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "preact": "^8.2.9",
+    "preact-compat": "^3.18.0",
+    "preact-material-components": "^1.4.4",
+    "scrypt-async": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-preact": "^1.1.0",
+    "node-sass": "^4.9.0"
+  }
+}
