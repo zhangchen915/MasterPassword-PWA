@@ -1,4 +1,4 @@
-.mdc-floating-label{
+.mdc-floating-label {
     pointer-events: none;
 }
 
@@ -21,9 +21,10 @@ header {
     margin-bottom: 2em;
 }
 
-h1 {
-    font-size: 2em;
-    margin: 2em 0 1em;
+ol{
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 strong {
@@ -34,33 +35,24 @@ p {
     line-height: 1.4em;
 }
 
-
-
 .pure-steps {
-    display: inline-block;
     width: 100%;
     height: 100vh;
     color: white;
-    margin-bottom: 3em;
     strong {
         color: $green;
         font-weight: 300;
     }
     .pure-steps_group {
-        position: relative;
+        padding: 0 10px;
         height: inherit;
-        border-radius: .4em;
         overflow: hidden;
-        box-shadow: 0 1.7em 5.5em -.94em rgba(black, .3), 0 2em 3em .5em rgba(black, .1), 0 1.8em 2em -1.5em rgba(black, .2);
         background-image: linear-gradient(-120deg, #26E289 0, #1a5fa2 100%, red 200%);
         background-position: 0 0;
         background-size: 300%;
-        will-change: background, box-shadow;
+        will-change: background;
         transition: all ($duration / 2) ease-out;
         .pure-steps_group-step {
-            position: absolute;
-            left: 0;
-            top: 0;
             width: 100%;
             transform: translate(100%);
             opacity: 0;

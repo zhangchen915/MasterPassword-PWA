@@ -1,15 +1,9 @@
-import {
-    h,
-    Component
-} from 'preact';
+import { h, Component } from 'preact';
 import { MPW } from "./mp";
 
-import Select from 'preact-material-components/Select';
-import 'preact-material-components/List/style.css';
-import 'preact-material-components/Menu/style.css';
+import { LayoutGrid, Select, TextField } from 'preact-material-components';
+import 'preact-material-components/LayoutGrid/style.css';
 import 'preact-material-components/Select/style.css';
-
-import TextField from 'preact-material-components/TextField';
 import 'preact-material-components/TextField/style.css';
 
 import './index.scss';
@@ -56,56 +50,62 @@ export default class App extends Component {
     }
 
     render() {
-        return <ol>
-            <li class="pure-steps_group-step">
-                <TextField
-                    label="Name"
-                    value={this.state.name}
-                    onKeyUp={e => {
-                        this.setState({ name: e.target.value });
-                    }}
-                /> <TextField
+        return <LayoutGrid>
+            <LayoutGrid.Inner className="pure-steps_group-step">
+                <LayoutGrid.Cell phoneCols="4">
+                    <TextField
+                        label="Name"
+                        value={this.state.name}
+                        onKeyUp={e => {
+                            this.setState({ name: e.target.value });
+                        }}
+                    /> </LayoutGrid.Cell>
+                <LayoutGrid.Cell phoneCols="4"><TextField
                     label="Master Password"
                     type="password"
                     onKeyUp={e => {
                         this.setState({ pw: e.target.value });
                     }}
-                />
+                /></LayoutGrid.Cell>
                 <label id="next" for="step-1" onClick={this.next.bind(this)}>Next</label>
-            </li>
-            <li class="pure-steps_group-step">
-                <TextField
-                    label="Site Name"
-                    value={this.state.site}
-                    onKeyUp={e => {
-                        this.setState({ site: e.target.value });
-                        this.cal();
-                    }}
-                />
-                <TextField
-                    label="Counter"
-                    type="number"
-                    value={this.state.count}
-                    onKeyUp={e => {
-                        this.setState({ count: e.target.value });
-                        this.cal();
-                    }}
-                />
-                <Select hintText="Template"
-                    selectedIndex={this.state.templateIndex}
-                    onChange={this.setTemplate}>
-                    <Select.Item>phrase</Select.Item>
-                    <Select.Item>name</Select.Item>
-                    <Select.Item>pin</Select.Item>
-                    <Select.Item>short</Select.Item>
-                    <Select.Item>basic</Select.Item>
-                    <Select.Item>medium</Select.Item>
-                    <Select.Item>long</Select.Item>
-                    <Select.Item>maximum</Select.Item>
-                </Select>
-                <div>{this.state.result}</div>
-                <label id="pre" for="step-0" onClick={this.pre.bind(this)}>Restart</label>
-            </li>
-        </ol>;
+            </LayoutGrid.Inner>
+            <LayoutGrid.Inner className="pure-steps_group-step">
+                <LayoutGrid.Cell phoneCols="4">
+                    <TextField
+                        label="Site Name"
+                        value={this.state.site}
+                        onKeyUp={e => {
+                            this.setState({ site: e.target.value });
+                            this.cal();
+                        }}
+                    /></LayoutGrid.Cell>
+                <LayoutGrid.Cell phoneCols="2">
+                    <TextField
+                        label="Counter"
+                        type="number"
+                        value={this.state.count}
+                        onKeyUp={e => {
+                            this.setState({ count: e.target.value });
+                            this.cal();
+                        }}
+                    /></LayoutGrid.Cell>
+                <LayoutGrid.Cell phoneCols="2">
+                    <Select hintText="Template"
+                        selectedIndex={this.state.templateIndex}
+                        onChange={this.setTemplate}>
+                        <Select.Item>phrase</Select.Item>
+                        <Select.Item>name</Select.Item>
+                        <Select.Item>pin</Select.Item>
+                        <Select.Item>short</Select.Item>
+                        <Select.Item>basic</Select.Item>
+                        <Select.Item>medium</Select.Item>
+                        <Select.Item>long</Select.Item>
+                        <Select.Item>maximum</Select.Item>
+                    </Select>
+                </LayoutGrid.Cell>
+                <LayoutGrid.Cell phoneCols="4">{this.state.result}</LayoutGrid.Cell>
+                <LayoutGrid.Cell phoneCols="4"><label id="pre" for="step-0" onClick={this.pre.bind(this)}>Restart</label></LayoutGrid.Cell>
+            </LayoutGrid.Inner>
+        </LayoutGrid>;
     }
 }
