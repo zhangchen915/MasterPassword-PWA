@@ -83,10 +83,6 @@ p {
             $bgPosition: (100 / $pureSteps) * $i;
             background-position: ($bgPosition * 1%) 0;
             @if $i==($pureSteps - 1) {
-                .pure-steps_group-triggers {
-                    opacity: 0;
-                    transition-delay: $duration;
-                }
                 .pure-steps_group-step {
                     align-items: center;
                     height: 100%;
@@ -103,19 +99,6 @@ p {
                         will-change: background-image;
                         transition: background-image 3s linear;
                         animation: preloadLine 3s ease-out forwards;
-                        svg {
-                            font-size: 1.2em;
-                            width: auto;
-                            height: 1em;
-                            padding: 1em;
-                            border-radius: 2em;
-                            background-color: #5BD670;
-                            fill: white;
-                            margin-top: -1.5em;
-                            transform: scale(0);
-                            animation: preloadTic .8s linear forwards;
-                            animation-delay: 3s;
-                        }
                     }
                 }
             }
