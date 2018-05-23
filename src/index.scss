@@ -1,50 +1,46 @@
+$mdc-theme-primary: #005d5c;
+@import "preact-material-components/Theme/mdc-theme";
+@import 'preact-material-components/Button/mdc-button';
+@import 'preact-material-components/TextField/mdc-text-field';
+
 .mdc-floating-label {
     pointer-events: none;
 }
 
+.mdc-text-field {
+    width: 100%;
+}
+
+.mdc-select {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.mdc-layout-grid {
+    position: relative;
+}
+
 $height: 26em;
-$factor: 1.618;
 $duration: .6s;
 $red: #FF3B99;
 $blue: #5eb9cc;
 $green: #B2FF41;
 $orange: #FF9D00;
-$textColor: #444;
+
 body {
+    width: 100vw;
+    overflow: hidden;
     margin: 0;
-    font-size: 16px;
-    text-align: center;
-    color: $textColor;
-}
-
-header {
-    margin-bottom: 2em;
-}
-
-ol{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-strong {
-    font-weight: 700;
-}
-
-p {
-    line-height: 1.4em;
+    color: white;
+    font: 1em/1.5 "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 .pure-steps {
     width: 100%;
     height: 100vh;
     color: white;
-    strong {
-        color: $green;
-        font-weight: 300;
-    }
     .pure-steps_group {
-        padding: 0 10px;
+        padding: 0 2em;
         height: inherit;
         overflow: hidden;
         background-image: linear-gradient(-120deg, #26E289 0, #1a5fa2 100%, red 200%);
@@ -53,7 +49,8 @@ p {
         will-change: background;
         transition: all ($duration / 2) ease-out;
         .pure-steps_group-step {
-            width: 100%;
+            position: absolute;
+            left: 0;
             transform: translate(100%);
             opacity: 0;
             will-change: transform, opacity;
@@ -79,7 +76,7 @@ p {
     }
     $pureSteps: 4; // staring index: 1
     @for $i from 1 to $pureSteps {
-        .pure-steps_radio:nth-child(#{$i}):checked~.pure-steps_group {
+        .pure-steps_radio:nth-child(#{$i}):checked ~ .pure-steps_group {
             $bgPosition: (100 / $pureSteps) * $i;
             background-position: ($bgPosition * 1%) 0;
             @if $i==($pureSteps - 1) {
@@ -103,7 +100,7 @@ p {
                 }
             }
         }
-        .pure-steps_radio:nth-child(#{$i}):checked~.pure-steps_group .pure-steps_group-step:nth-child(#{$i}) {
+        .pure-steps_radio:nth-child(#{$i}):checked ~ .pure-steps_group .pure-steps_group-step:nth-child(#{$i}) {
             opacity: 1;
             transform: translate(0);
         }

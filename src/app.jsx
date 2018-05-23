@@ -2,12 +2,9 @@ import {h, Component} from 'preact';
 import {MPW} from "./mp";
 
 import {Button, LayoutGrid, Select, TextField} from 'preact-material-components';
-import 'preact-material-components/Button/style.css';
+import './index.scss';
 import 'preact-material-components/LayoutGrid/style.css';
 import 'preact-material-components/Select/style.css';
-import 'preact-material-components/TextField/style.css';
-
-import './index.scss';
 
 const worker = new Worker("./work.js");
 
@@ -99,7 +96,7 @@ export default class App extends Component {
                                     this.cal();
                                 }}
                             /></LayoutGrid.Cell>
-                        <LayoutGrid.Cell phoneCols="2">
+                        <LayoutGrid.Cell phoneCols="2" align="bottom">
                             <Select hintText="Template"
                                     selectedIndex={this.state.templateIndex}
                                     onChange={this.setTemplate}>
