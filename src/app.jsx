@@ -9,14 +9,13 @@ import 'preact-material-components/TextField/style.css';
 
 import './index.scss';
 
-const template = ['phrase', 'name', 'pin', 'short', 'basic', 'medium', 'long', 'maximum']
+const worker = new Worker("./work.js");
 
 export default class App extends Component {
     state = {
         checked: 0,
         name: localStorage.getItem('name'),
         pw: '',
-        mpw: '',
         site: '',
         count: 1,
         templateIndex: 6,
@@ -34,7 +33,8 @@ export default class App extends Component {
             e.preventDefault();
             return;
         }
-        this.setState({checked: 1, mpw: new MPW(name, pw)});
+        worker.postMessage(this.state);
+        this.setState({checked: 1});
         localStorage.setItem('name', name);
     }
 
@@ -45,10 +45,12 @@ export default class App extends Component {
     cal() {
         let {mpw, site, count, templateIndex} = this.state;
         if (site && count) {
-            mpw.generate(site, count, template[templateIndex - 1]).then(res => {
-                this.setState({result: res});
-            })
+            worker.postMessage(this.state);
+            worker.onmessage = (e) => {
+                this.setState(e.data);
+            }
         }
+
     }
 
     render() {

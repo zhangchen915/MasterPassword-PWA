@@ -38,12 +38,12 @@ export class MPW {
 
             if (version < 3) {
                 // Set data[i,i+4] to nameCharLength UINT32 in big-endian form
-                saltView.setUint32(i, nameCharLength, false /*big-endian*/ );
-                i += 4 /*sizeof(uint32)*/ ;
+                saltView.setUint32(i, nameCharLength, false /*big-endian*/);
+                i += 4 /*sizeof(uint32)*/;
             } else {
                 // Set salt[i,i+4] to name.length UINT32 in big-endian form
-                saltView.setUint32(i, name.length, false /*big-endian*/ );
-                i += 4 /*sizeof(uint32)*/ ;
+                saltView.setUint32(i, name.length, false /*big-endian*/);
+                i += 4 /*sizeof(uint32)*/;
             }
 
             // Set salt[i,] to name
@@ -66,13 +66,12 @@ export class MPW {
             key = derivedKey;
         });
 
-        // If the Web Crypto API is supported import the key, otherwise return
         return crypto.subtle.importKey("raw", key, {
             name: "HMAC",
             hash: {
                 name: "SHA-256"
             }
-        }, false /*not extractable*/ , ["sign"]) /*= key*/
+        }, false /*not extractable*/, ["sign"])
 
     }
 
@@ -103,12 +102,12 @@ export class MPW {
 
             if (this.version < 2) {
                 // Set data[i,i+4] to siteCharLength UINT32 in big-endian form
-                dataView.setUint32(i, siteCharLength, false /*big-endian*/ );
-                i += 4 /*sizeof(uint32)*/ ;
+                dataView.setUint32(i, siteCharLength, false /*big-endian*/);
+                i += 4 /*sizeof(uint32)*/;
             } else {
                 // Set data[i,i+4] to site.length UINT32 in big-endian form
-                dataView.setUint32(i, site.length, false /*big-endian*/ );
-                i += 4 /*sizeof(uint32)*/ ;
+                dataView.setUint32(i, site.length, false /*big-endian*/);
+                i += 4 /*sizeof(uint32)*/;
             }
 
             // Set data[i,] to site
@@ -116,49 +115,24 @@ export class MPW {
             i += site.length;
 
             // Set data[i,i+4] to counter INT32 in big-endian form
-            dataView.setInt32(i, counter, false /*big-endian*/ );
-            i += 4 /*sizeof(int32)*/ ;
+            dataView.setInt32(i, counter, false /*big-endian*/);
+            i += 4 /*sizeof(int32)*/;
         } catch (e) {
             return Promise.reject(e);
         }
 
-        // If the Web Crypto API is supported use it, otherwise rely on crypto-js
-        if (window.crypto.subtle) {
-            return this.key.then(
-                // Sign data using HMAC-SHA-256 w/ this.key
-                key => window.crypto.subtle.sign({
-                    name: "HMAC",
-                    hash: {
-                        name: "SHA-256"
-                    }
-                }, key, data) /*= seed*/
-            ).then(
-                // Convert the seed to Uint8Array from ArrayBuffer
-                seed => new Uint8Array(seed) /*= seed*/
-            );
-        } else {
-            return this.key.then(function (key) {
-                // Create crypto-js WordArrays from Uint8Arrays data and key
-                data = CryptoJS.lib.WordArray.create(data);
-                key = CryptoJS.lib.WordArray.create(key);
-
-                // Sign data using HMAC-SHA-256 w/ key
-                return CryptoJS.HmacSHA256(data, key) /*= seed*/ ;
-            }).then(function (hash) {
-                // Create seed array and a DataView representing it
-                let seed = new Uint8Array(hash.words.length * 4 /*sizeof(int32)*/ );
-                let seedView = new DataView(seed.buffer, seed.byteOffset, seed.byteLength);
-
-                // Loop over hash.words which are INT32
-                for (let i = 0; i < hash.words.length; i++) {
-                    // Set seed[i*4,i*4+4] to hash.words[i] INT32 in big-endian form
-                    seedView.setInt32(i * 4 /*sizeof(int32)*/ , hash.words[i], false /*big-endian*/ );
+        return this.key.then(
+            // Sign data using HMAC-SHA-256 w/ this.key
+            key => crypto.subtle.sign({
+                name: "HMAC",
+                hash: {
+                    name: "SHA-256"
                 }
-
-                // Return the seed Uint8Array
-                return seed;
-            });
-        }
+            }, key, data) /*= seed*/
+        ).then(
+            // Convert the seed to Uint8Array from ArrayBuffer
+            seed => new Uint8Array(seed)
+        );
     }
 
     generate(site, counter = 1, template = "long", NS) {
