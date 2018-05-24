@@ -18,6 +18,7 @@
     "babel-core": "^6.26.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-preact": "^1.1.0",
-    "node-sass": "^4.9.0"
+    "node-sass": "^4.9.0",
+    "parcel-plugin-sw-precache": "^0.5.1"
   }
 }
