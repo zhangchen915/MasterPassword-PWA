@@ -4,10 +4,6 @@ import {Text} from 'preact-i18n';
 import copy from 'clipboard-copy';
 import {Button, LayoutGrid, Select, TextField} from 'preact-material-components';
 
-import './index.scss';
-import 'preact-material-components/LayoutGrid/style.css';
-import 'preact-material-components/Select/style.css';
-
 const worker = new Worker("./work.js");
 
 export default class App extends Component {

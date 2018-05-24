@@ -2,6 +2,8 @@ $mdc-theme-primary: #005d5c;
 @import "preact-material-components/Theme/mdc-theme";
 @import 'preact-material-components/Button/mdc-button';
 @import 'preact-material-components/TextField/mdc-text-field';
+@import 'preact-material-components/LayoutGrid/mdc-layout-grid';
+@import 'preact-material-components/Select/mdc-select';
 
 .mdc-floating-label {
     pointer-events: none;
