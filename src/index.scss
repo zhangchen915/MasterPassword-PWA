@@ -7,7 +7,7 @@ $mdc-theme-primary: #005d5c;
     pointer-events: none;
 }
 
-.mdc-text-field {
+.mdc-text-field, .mdc-button {
     width: 100%;
 }
 
@@ -18,6 +18,10 @@ $mdc-theme-primary: #005d5c;
 
 .mdc-layout-grid {
     position: relative;
+}
+
+.grid-center {
+    grid-column-start: 2;
 }
 
 $height: 26em;
@@ -35,7 +39,7 @@ body {
     font: 1em/1.5 "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
-.pure-steps {
+.steps {
     width: 100%;
     height: 100vh;
     color: white;
@@ -49,15 +53,17 @@ body {
         will-change: background;
         transition: all ($duration / 2) ease-out;
         .pure-steps_group-step {
-            position: absolute;
-            left: 0;
+            text-align: center;
             transform: translate(100%);
             opacity: 0;
             will-change: transform, opacity;
             transition: all $duration ease-in-out;
             text-align: left;
             &:last-child {
-                text-align: center;
+                position: absolute;
+                top: 16px;
+                left: 16px;
+                right: 16px;
             }
             .pure-steps_group-step_legend {
                 font-size: 1.5em;

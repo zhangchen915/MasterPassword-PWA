@@ -73,7 +73,7 @@ export default class App extends Component {
                                     this.setState({pw: e.target.value});
                                 }}/>
                         </LayoutGrid.Cell>
-                        <LayoutGrid.Cell phoneCols="2">
+                        <LayoutGrid.Cell phoneCols="2" className="grid-center">
                             <Button raised ripple onClick={this.next.bind(this)}><Text id="next">Next</Text></Button>
                         </LayoutGrid.Cell>
                     </LayoutGrid.Inner>
@@ -113,7 +113,7 @@ export default class App extends Component {
                             </Select>
                         </LayoutGrid.Cell>
                         <LayoutGrid.Cell phoneCols="4">{this.state.result}</LayoutGrid.Cell>
-                        <LayoutGrid.Cell phoneCols="2">
+                        <LayoutGrid.Cell phoneCols="2" className="grid-center">
                             <Button raised ripple onClick={this.pre.bind(this)}><Text
                                 id="restart">Restart</Text></Button>
                         </LayoutGrid.Cell>
