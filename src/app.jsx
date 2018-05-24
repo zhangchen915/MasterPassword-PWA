@@ -1,8 +1,9 @@
+import {MPW} from "./mp";
 import {h, Component} from 'preact';
 import {Text} from 'preact-i18n';
-import {MPW} from "./mp";
-
+import copy from 'clipboard-copy';
 import {Button, LayoutGrid, Select, TextField} from 'preact-material-components';
+
 import './index.scss';
 import 'preact-material-components/LayoutGrid/style.css';
 import 'preact-material-components/Select/style.css';
@@ -25,7 +26,7 @@ export default class App extends Component {
         this.cal();
     };
 
-    next(e) {
+    next = e => {
         let {name, pw} = this.state;
         if (!name || !pw) {
             e.preventDefault();
@@ -48,6 +49,10 @@ export default class App extends Component {
                 this.setState(e.data);
             }
         }
+    }
+
+    copyClick() {
+        copy(this.state.result);
     }
 
     render() {
@@ -112,7 +117,8 @@ export default class App extends Component {
                                 <Select.Item><Text id="select.maximum">maximum</Text></Select.Item>
                             </Select>
                         </LayoutGrid.Cell>
-                        <LayoutGrid.Cell phoneCols="4">{this.state.result}</LayoutGrid.Cell>
+                        <LayoutGrid.Cell phoneCols="4"
+                                         onClick={this.copyClick.bind(this)}>{this.state.result}</LayoutGrid.Cell>
                         <LayoutGrid.Cell phoneCols="2" className="grid-center">
                             <Button raised ripple onClick={this.pre.bind(this)}><Text
                                 id="restart">Restart</Text></Button>
