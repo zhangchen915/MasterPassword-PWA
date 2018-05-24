@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "parcel ./index.html --https --hmr-hostname 127.0.0.1 --no-source-maps"
+    "build": "parcel ./index.html --no-source-maps",
+    "dev": "parcel ./index.html --https --hmr-hostname 127.0.0.1 --no-source-maps"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "preact": "^8.2.9",
     "preact-compat": "^3.18.0",
+    "preact-i18n": "^1.2.1",
     "preact-material-components": "^1.4.4",
     "scrypt-async": "^2.0.0"
   },

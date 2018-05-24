@@ -1,4 +1,5 @@
 import {h, Component} from 'preact';
+import {Text} from 'preact-i18n';
 import {MPW} from "./mp";
 
 import {Button, LayoutGrid, Select, TextField} from 'preact-material-components';
@@ -43,15 +44,14 @@ export default class App extends Component {
         let {mpw, site, count, templateIndex} = this.state;
         if (site && count) {
             worker.postMessage(this.state);
-            worker.onmessage = (e) => {
+            worker.onmessage = e => {
                 this.setState(e.data);
             }
         }
-
     }
 
     render() {
-        return (<div className="pure-steps">
+        return (<div className="steps">
             <input type="radio" className="pure-steps_radio" checked={!this.state.checked}/>
             <input type="radio" className="pure-steps_radio" checked={this.state.checked}/>
             <div className="pure-steps_group">
@@ -59,7 +59,7 @@ export default class App extends Component {
                     <LayoutGrid.Inner className="pure-steps_group-step">
                         <LayoutGrid.Cell phoneCols="4">
                             <TextField
-                                label="Name"
+                                label={<Text id="name">Name</Text>}
                                 value={this.state.name}
                                 onKeyUp={e => {
                                     this.setState({name: e.target.value});
@@ -67,19 +67,21 @@ export default class App extends Component {
                         </LayoutGrid.Cell>
                         <LayoutGrid.Cell phoneCols="4">
                             <TextField
-                                label="Master Password"
+                                label={<Text id="mp">Master Password</Text>}
                                 type="password"
                                 onKeyUp={e => {
                                     this.setState({pw: e.target.value});
                                 }}/>
                         </LayoutGrid.Cell>
-                        <Button raised ripple onClick={this.next.bind(this)}>Next</Button>
+                        <LayoutGrid.Cell phoneCols="2">
+                            <Button raised ripple onClick={this.next.bind(this)}><Text id="next">Next</Text></Button>
+                        </LayoutGrid.Cell>
                     </LayoutGrid.Inner>
 
                     <LayoutGrid.Inner className="pure-steps_group-step">
                         <LayoutGrid.Cell phoneCols="4">
                             <TextField
-                                label="Site Name"
+                                label={<Text id="site">Site Name</Text>}
                                 value={this.state.site}
                                 onKeyUp={e => {
                                     this.setState({site: e.target.value});
@@ -88,7 +90,7 @@ export default class App extends Component {
                             /></LayoutGrid.Cell>
                         <LayoutGrid.Cell phoneCols="2">
                             <TextField
-                                label="Counter"
+                                label={<Text id="counter">Counter</Text>}
                                 type="number"
                                 value={this.state.count}
                                 onKeyUp={e => {
@@ -97,22 +99,23 @@ export default class App extends Component {
                                 }}
                             /></LayoutGrid.Cell>
                         <LayoutGrid.Cell phoneCols="2" align="bottom">
-                            <Select hintText="Template"
+                            <Select hintText={<Text id="template">Template</Text>}
                                     selectedIndex={this.state.templateIndex}
                                     onChange={this.setTemplate}>
-                                <Select.Item>phrase</Select.Item>
-                                <Select.Item>name</Select.Item>
-                                <Select.Item>pin</Select.Item>
-                                <Select.Item>short</Select.Item>
-                                <Select.Item>basic</Select.Item>
-                                <Select.Item>medium</Select.Item>
-                                <Select.Item>long</Select.Item>
-                                <Select.Item>maximum</Select.Item>
+                                <Select.Item><Text id="select.phrase">phrase</Text></Select.Item>
+                                <Select.Item><Text id="select.name">name</Text></Select.Item>
+                                <Select.Item><Text id="select.pin">pin</Text></Select.Item>
+                                <Select.Item><Text id="select.short">short</Text></Select.Item>
+                                <Select.Item><Text id="select.basic">basic</Text></Select.Item>
+                                <Select.Item><Text id="select.medium">medium</Text></Select.Item>
+                                <Select.Item><Text id="select.long">long</Text></Select.Item>
+                                <Select.Item><Text id="select.maximum">maximum</Text></Select.Item>
                             </Select>
                         </LayoutGrid.Cell>
                         <LayoutGrid.Cell phoneCols="4">{this.state.result}</LayoutGrid.Cell>
-                        <LayoutGrid.Cell phoneCols="4">
-                            <Button raised ripple onClick={this.pre.bind(this)}>Restart</Button>
+                        <LayoutGrid.Cell phoneCols="2">
+                            <Button raised ripple onClick={this.pre.bind(this)}><Text
+                                id="restart">Restart</Text></Button>
                         </LayoutGrid.Cell>
                     </LayoutGrid.Inner>
                 </LayoutGrid>

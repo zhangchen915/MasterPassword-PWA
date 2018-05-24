@@ -1,0 +1,19 @@
+{
+  "name": "用户名",
+  "mp": "主密码",
+  "site": "站点名称",
+  "counter": "计数",
+
+  "select": {
+    "phrase": "短语",
+    "name": "用户名",
+    "pin": "pin",
+    "short": "短",
+    "basic": "基本",
+    "medium": "中等",
+    "long": "长",
+    "maximum": "最长"
+  },
+  "next": "下一步",
+  "restart": "重置"
+}
