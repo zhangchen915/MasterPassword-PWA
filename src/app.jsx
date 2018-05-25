@@ -1,11 +1,13 @@
-import {MPW} from "./mp";
 import {h, Component} from 'preact';
-import {Text} from 'preact-i18n';
+import {withText, Text} from 'preact-i18n';
 import copy from 'clipboard-copy';
-import {Button, LayoutGrid, Select, TextField} from 'preact-material-components';
+import {Button, Snackbar, LayoutGrid, Select, TextField} from 'preact-material-components';
 
 const worker = new Worker("./work.js");
 
+@withText({
+    copy: 'action.copy'
+})
 export default class App extends Component {
     state = {
         checked: 0,
@@ -31,14 +33,14 @@ export default class App extends Component {
         worker.postMessage(this.state);
         this.setState({checked: 1});
         localStorage.setItem('name', name);
-    }
+    };
 
     pre() {
         this.setState({checked: 0, site: '', result: ''});
     }
 
     cal() {
-        let {mpw, site, count, templateIndex} = this.state;
+        let {site, count} = this.state;
         if (site && count) {
             worker.postMessage(this.state);
             worker.onmessage = e => {
@@ -49,6 +51,9 @@ export default class App extends Component {
 
     copyClick() {
         copy(this.state.result);
+        this.bar.MDComponent.show({
+            message: this.props.copy
+        })
     }
 
     render() {
@@ -75,7 +80,8 @@ export default class App extends Component {
                                 }}/>
                         </LayoutGrid.Cell>
                         <LayoutGrid.Cell phoneCols="2" className="grid-center">
-                            <Button raised ripple onClick={this.next.bind(this)}><Text id="next">Next</Text></Button>
+                            <Button raised ripple onClick={this.next.bind(this)}><Text
+                                id="action.next">Next</Text></Button>
                         </LayoutGrid.Cell>
                     </LayoutGrid.Inner>
 
@@ -113,14 +119,18 @@ export default class App extends Component {
                                 <Select.Item><Text id="select.maximum">maximum</Text></Select.Item>
                             </Select>
                         </LayoutGrid.Cell>
-                        <LayoutGrid.Cell phoneCols="4"
+                        <LayoutGrid.Cell className="result"
+                                         phoneCols="4"
                                          onClick={this.copyClick.bind(this)}>{this.state.result}</LayoutGrid.Cell>
                         <LayoutGrid.Cell phoneCols="2" className="grid-center">
                             <Button raised ripple onClick={this.pre.bind(this)}><Text
-                                id="restart">Restart</Text></Button>
+                                id="action.restart">Restart</Text></Button>
                         </LayoutGrid.Cell>
                     </LayoutGrid.Inner>
                 </LayoutGrid>
+                <Snackbar ref={bar => {
+                    this.bar = bar;
+                }}/>
             </div>
         </div>);
     }

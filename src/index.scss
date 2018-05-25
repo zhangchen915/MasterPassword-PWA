@@ -4,6 +4,7 @@ $mdc-theme-primary: #005d5c;
 @import 'preact-material-components/TextField/mdc-text-field';
 @import 'preact-material-components/LayoutGrid/mdc-layout-grid';
 @import 'preact-material-components/Select/mdc-select';
+@import 'preact-material-components/Snackbar/mdc-snackbar';
 
 .mdc-floating-label {
     pointer-events: none;
@@ -24,6 +25,10 @@ $mdc-theme-primary: #005d5c;
 
 .grid-center {
     grid-column-start: 2;
+}
+
+.mdc-snackbar__text{
+    margin: 0 auto!important;
 }
 
 $height: 26em;
@@ -60,7 +65,6 @@ body {
             opacity: 0;
             will-change: transform, opacity;
             transition: all $duration ease-in-out;
-            text-align: left;
             &:last-child {
                 position: absolute;
                 top: 16px;
@@ -81,6 +85,9 @@ body {
     }
     .pure-steps_radio {
         display: none;
+    }
+    .result{
+        user-select: none;
     }
     $pureSteps: 4; // staring index: 1
     @for $i from 1 to $pureSteps {
