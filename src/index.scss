@@ -31,6 +31,10 @@ $mdc-theme-primary: #005d5c;
     margin: 0 auto!important;
 }
 
+.hide{
+    display: none;
+}
+
 $height: 26em;
 $duration: .6s;
 $red: #FF3B99;
@@ -82,9 +86,6 @@ body {
                 padding: 0 2em 1em;
             }
         }
-    }
-    .pure-steps_radio {
-        display: none;
     }
     .result{
         user-select: none;

@@ -58,8 +58,8 @@ export default class App extends Component {
 
     render() {
         return (<div className="steps">
-            <input type="radio" className="pure-steps_radio" checked={!this.state.checked}/>
-            <input type="radio" className="pure-steps_radio" checked={this.state.checked}/>
+            <input type="radio" className="pure-steps_radio hide" checked={!this.state.checked}/>
+            <input type="radio" className="pure-steps_radio hide" checked={this.state.checked}/>
             <div className="pure-steps_group">
                 <LayoutGrid>
                     <LayoutGrid.Inner className="pure-steps_group-step">

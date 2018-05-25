@@ -1,14 +1,14 @@
 {
-  "name": "mp",
+  "name": "Master Password",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Master Password — Secure your life, forget your passwords.",
+  "main": "index.html",
   "scripts": {
     "build": "parcel build ./index.html --no-source-maps",
     "dev": "parcel ./index.html --https --hmr-hostname 127.0.0.1 --no-source-maps"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "zhangchen915",
+  "license": "MIT",
   "dependencies": {
     "clipboard-copy": "^2.0.0",
     "preact": "^8.2.9",
