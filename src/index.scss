@@ -50,6 +50,11 @@ body {
     font: 1em/1.5 "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
 .steps {
     width: 100%;
     height: 100vh;
@@ -153,5 +158,14 @@ body {
     80%,
     100% {
         transform: scale(1);
+    }
+}
+
+@media (min-width: 840px) {
+    .grid-center {
+        grid-column-start: 5;
+    }
+    .grid-column3-7 {
+        grid-column: 3 / 7;
     }
 }

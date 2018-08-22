@@ -63,7 +63,7 @@ export default class App extends Component {
             <div className="pure-steps_group">
                 <LayoutGrid>
                     <LayoutGrid.Inner className="pure-steps_group-step">
-                        <LayoutGrid.Cell phoneCols="4">
+                        <LayoutGrid.Cell phoneCols="4" className="grid-column3-7">
                             <TextField
                                 label={<Text id="name">Name</Text>}
                                 value={this.state.name}

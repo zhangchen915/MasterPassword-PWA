@@ -1,5 +1,5 @@
 {
-  "name": "Master Password",
+  "name": "MasterPassword",
   "version": "1.0.0",
   "description": "Master Password — Secure your life, forget your passwords.",
   "main": "index.html",
@@ -22,6 +22,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-preact": "^1.1.0",
+    "cssnano": "^4.0.5",
     "node-sass": "^4.9.0",
     "parcel-plugin-sw-precache": "^0.5.1"
   }
