@@ -4,7 +4,7 @@
   "description": "Master Password — Secure your life, forget your passwords.",
   "main": "index.html",
   "scripts": {
-    "build": "parcel build ./index.html --out-dir docs --no-source-maps",
+    "build": "parcel build ./index.html --public-url ./ --out-dir docs --no-source-maps",
     "dev": "parcel ./index.html --https --hmr-hostname 127.0.0.1 --no-source-maps"
   },
   "author": "zhangchen915",
